@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Voice Controlled Notes App</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+	<link rel="stylesheet" href="src/styles.css">
+<style>
+
+#timer{
+		text-align: right;
+		font-size: 20px;
+		margin-top: 0px;
+	}
+</style>
+</head>
+
+<body>
+	<script type="text/javascript">
+	$(function() { var params = { // Request parameters
+	 }; 
+	$.ajax({ url: "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/languages?"+ $.param(params), beforeSend: function(xhrObj){ // Request headers 
+	xhrObj.setRequestHeader("Content-Type","application/json");
+	xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","4a98f14f888d4a28bfbd1a04da102374"); 
+	}, type: "POST", // Request body 
+	data: "{body}",
+	}) .done(function(data) { alert("success"); }) .fail(function() { alert("error"); }); });
+	</script>
+
+  <!-- <script>
+
+		// Set the date we're counting down to
+	var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+	
+	// Update the count down every 1 second
+	var x = setInterval(function() {
+	
+	  // Get todays date and time
+	  var now = new Date().getTime();
+	    
+	  // Find the distance between now and the count down date
+	  var distance = countDownDate - now;
+	    
+	  // Time calculations for days, hours, minutes and seconds
+	  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	    
+	  // Output the result in an element with id="demo"
+	  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+	  + minutes + "m " + seconds + "s ";
+	    
+	  // If the count down is over, write some text 
+	  if (distance < 0) {
+	    clearInterval(x);
+	    document.getElementById("timer").innerHTML = "EXPIRED";
+	  }
+	}, 1000);
+	 -->
+	</script>
+  <div id="timer"></div>
+	<div class="container">
+
+		<h1 id="question" >Voice Controlled Notes App</h1>
+		<!-- <p class="page-description">A tiny app that allows you to take notes by recording your voice</p>
+		<p><a class="tz-link" href="https://tutorialzine.com/2017/08/converting-from-speech-to-text-with-javascript">Read the full
+				article on Tutorialzine »</a></p> -->
+
+		<h3 class="no-browser-support">Sorry, Your Browser Doesn't Support the Web Speech API. Try Opening This Demo In Google
+			Chrome.</h3>
+
+		<div class="app">
+			<h3>Add New Note</h3>
+			<div class="input-single">
+				<textarea id="note-textarea" placeholder="Create a new note by typing or using voice recognition." rows="6"></textarea>
+                </div>         
+                <button id="start-record-btn" title="Start Recording">Start Recognition</button>
+                <button id="pause-record-btn" title="Pause Recording">Pause Recognition</button>
+                <button id="save-note-btn" title="Save Note">Save Note</button>   
+                <p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access.</p>
+                
+                <h3>My Notes</h3>
+                <ul id="notes">
+                    <li>
+                        <p class="no-notes">You don't have any notes.</p>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <script src="src/index.js"></script>
+
+        <!-- Only used for the demos ads. Please ignore and remove. --> 
+        <!-- <script src="https://cdn.tutorialzine.com/misc/enhance/v3.js" async></script> -->
+        <p id="response">
+        </p>
+
+    </body>
+</html>
